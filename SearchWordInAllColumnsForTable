@@ -1,3 +1,4 @@
+--Select * from TableName where * like '%searchingData%'
 --Search "ai" word in all columns for Customers table
 SET ANSI_NULLS ON
 GO
