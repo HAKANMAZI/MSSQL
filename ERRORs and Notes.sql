@@ -6,3 +6,7 @@ cast( replace(column,',','.') as decimal )
 update table1 
 set = ( select column from table2 
         where table1.id = table2.id )
+
+
+-- Sık kullanılan
+select * from fn_get_audit_file('P:\audits\*.sqlaudit',default,default)
