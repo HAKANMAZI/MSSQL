@@ -1,3 +1,17 @@
+create proc getPhoto as 
+--ERROR     SQL Server blocked access to procedure 'sys.sp_OACreate' of component 'Ole Automation Procedures'
+
+--EXEC sp_configure 'Ole Automation Procedures';
+--GO
+--sp_configure 'show advanced options', 1;
+--GO
+--RECONFIGURE;
+--GO
+--sp_configure 'Ole Automation Procedures', 1;
+--GO
+--RECONFIGURE;
+--GO
+
 DECLARE @ImageData VARBINARY (max);
 DECLARE @Path2OutFile NVARCHAR (2000);
 DECLARE @Obj INT
@@ -32,3 +46,6 @@ begin
 	EXEC sp_OADestroy @Obj;
    END CATCH
 end
+
+
+
