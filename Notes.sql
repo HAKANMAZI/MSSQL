@@ -1,3 +1,6 @@
+--image to mssql
+select * from openrowset(BULK N'hakan.png', single_blob) as t1)
+  
   -- Tüm dataları siler id yi de resetler
   DELETE [database].[schema].[tablename]                             
   DBCC CHECKIDENT ('[database].[schema].[tablename]', RESEED, 0);
