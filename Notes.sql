@@ -64,4 +64,9 @@ group by t.Name, s.Name, p.Rows
 order by s.name, t.name
 go
 
-  
+-------------------------- io and time statistics ------------------------------
+
+set statistics io on
+set statistics time on 
+SELECT * FROM [NORTHWND].[dbo].[Orders] where ShipAddress = 'Luisenstr. 48'
+
