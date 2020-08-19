@@ -1,23 +1,24 @@
---image to mssql
+-------------------------- image to mssql --------------------------
 select * from openrowset(BULK N'hakan.png', single_blob) as t1)
   
-  -- Tüm dataları siler id yi de resetler
+  
+-------------------------- Tüm dataları siler id yi de resetler --------------------------
   DELETE [database].[schema].[tablename]                             
   DBCC CHECKIDENT ('[database].[schema].[tablename]', RESEED, 0);
   GO
 
 
---Tablo2 de olup Tablo1 de olmayan
+-------------------------- Tablo2 de olup Tablo1 de olmayan --------------------------
 select  * from Table1 a 
 where not exists (select  1 from Table2 b where rtrim(ltrim (a.TCKNO ))
 collate Turkish_CI_AI=rtrim(ltrim (b.TCKNO )) collate Turkish_CI_AI);
 
---Langitude ve Latitude mesafe hesaplama
+-------------------------- Langitude ve Latitude mesafe hesaplama --------------------------
   DECLARE @source geography = 'POINT(0 51.5)'
   DECLARE @target geography = 'point(-3 56)'
   select @source.STDistance(@target)
   
- --change schema
+ -------------------------- change schema --------------------------
   if (not exists (select * from sys.schemas where name = 'hsv'))
   begin
      exec('create schema [hsv] authorization [dbo]')
@@ -26,12 +27,12 @@ collate Turkish_CI_AI=rtrim(ltrim (b.TCKNO )) collate Turkish_CI_AI);
   alter schema hsv
       transfer dbo.arac
 	 
- --a ile b nin kesişimi 
+ -------------------------- a ile b nin kesişimi --------------------------
  a intersect b  
  --a da var b de yok
  a except b       
  
- 
+-------------------------- -------------------------- 
 EXEC sp_MSforeachdb N'
 IF N''?'' NOT IN(N''master'',N''model'',N''tempdb'',N''msdb'',N''SSISDB'')
 BEGIN
@@ -42,11 +43,11 @@ BEGIN
 		 SELECT * FROM TableName1.INFORMATION_SCHEMA.TABLES;
 END;';
 
-
+-------------------------- indexini bul --------------------------
   select PATINDEX('%[ ]%','hakan mazi')   --ilk boşluğun indexini bul
   select PATINDEX('%[_-]%','hakan mazi')   --ilk _ yada - indexini bul
   
-  
+--------------------------   --------------------------
 use DatabaseName
 go
 select
@@ -65,7 +66,6 @@ order by s.name, t.name
 go
 
 -------------------------- io and time statistics ------------------------------
-
 set statistics io on
 set statistics time on 
 SELECT * FROM [NORTHWND].[dbo].[Orders] where ShipAddress = 'Luisenstr. 48'
