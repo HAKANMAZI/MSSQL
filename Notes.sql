@@ -1,3 +1,6 @@
+-------------------------- erişimimiz olan databaseleri listeler --------------------------
+select * from sys.databases where HAS_DBACCESS(name) = 1
+
 -------------------------- image to mssql --------------------------
 select * from openrowset(BULK N'hakan.png', single_blob) as t1)
   
