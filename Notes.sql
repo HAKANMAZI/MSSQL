@@ -85,6 +85,16 @@ group by t.Name, s.Name, p.Rows
 order by s.name, t.name
 go
 
+-- Update tabloyu select query kullanarak
+update table1 
+set = ( select column from table2 
+        where table1.id = table2.id )
+
+
+-- Sık kullanılan
+select * from fn_get_audit_file('P:\audits\*.sqlaudit',default,default)
+
+
 -------------------------- io and time statistics ------------------------------
 set statistics io on
 set statistics time on 
