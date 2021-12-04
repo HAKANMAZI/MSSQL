@@ -90,3 +90,20 @@ INNER JOIN msdb.dbo.backupmediafamily bf on bf.media_set_id=b.media_set_id
 WHERE database_name = 'NORTHWND'
 ORDER BY b.backup_start_date  DESC
 
+--SYSTEM
+-------------------------------
+use master;
+go
+
+alter database [DatabaseName]
+set single_user with rollback immediate
+go
+
+alter database [DatabaseName]
+collate Turkish_CI_AS;
+go
+
+alter database [DatabaseName]
+set multi_user with rollback immediate;
+go
+
