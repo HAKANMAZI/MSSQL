@@ -46,6 +46,13 @@ BEGIN
 		 SELECT * FROM TableName1.INFORMATION_SCHEMA.TABLES;
 END;';
 
+------------------------------- Call StoreProcedure Using LinkedServer  -------------------------------
+1)Create LinkedName and change RCP and RCP OUT (True) in LinkedName Properties
+2)exec ('exec DatabasName.schema.StoreProcedureName') at [LinkedName]
+  or
+  exec ('DatabasName.schema.StoreProcedureName') at [LinkedName]
+  
+  
 -------------------------- indexini bul --------------------------
   select PATINDEX('%[ ]%','hakan mazi')   --ilk boşluğun indexini bul
   select PATINDEX('%[_-]%','hakan mazi')   --ilk _ yada - indexini bul
