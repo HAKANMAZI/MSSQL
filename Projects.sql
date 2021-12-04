@@ -1,3 +1,5 @@
+
+------------------------------------------------------------ Search Word In All Columns For Table ------------------------------------------------------------
 --Select * from TableName where * like '%searchingData%'
 --Search "ai" word in all columns for Customers table
 SET ANSI_NULLS ON
