@@ -29,6 +29,16 @@ collate Turkish_CI_AI=rtrim(ltrim (b.TCKNO )) collate Turkish_CI_AI);
 
   alter schema hsv
       transfer dbo.arac
+      
+ ---------------------------- Data Transfer From Sql Server To Text File Using BCP format ----------------------------
+
+declare @output nvarchar(1000), @filepath nvarchar(1000), @bcp nvarchar(1000)
+set @bcp = 'bcp "select * from sys.traces" queryout '
+set @filepath = 'C:\x\'
+set @output = 'text.txt'
+set @bcp = @bcp + @filepath + @output + ' -c -t, -T -S'+ @@SERVERNAME
+EXEC master..xp_cmdshell @bcp
+
 	 
  -------------------------- a ile b nin kesişimi --------------------------
  a intersect b  
