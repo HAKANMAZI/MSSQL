@@ -107,3 +107,46 @@ alter database [DatabaseName]
 set multi_user with rollback immediate;
 go
 
+
+
+---------------------------- users vs logins ----------------------------
+--https://dataedo.com/kb/query/sql-server/list-logins-on-server
+
+select sp.name as login,
+       sp.type_desc as login_type,
+       sl.password_hash,
+       sp.create_date,
+       sp.modify_date,
+       case when sp.is_disabled = 1 then 'Disabled'
+            else 'Enabled' end as status
+from sys.server_principals sp
+left join sys.sql_logins sl
+          on sp.principal_id = sl.principal_id
+where sp.type not in ('G', 'R')
+order by sp.name;
+
+
+---------------------------- Remove Chars and get only numeric values ----------------------------
+declare @phone nvarchar(100)
+set @phone = '905414,.9p/6'
+
+declare @count int, @total int, @combine nvarchar(2500), @newValue nvarchar(2500)
+set @combine = ''
+set @count = 1
+set @total = len(@phone)
+
+while @count <= @total
+begin
+	set @newValue = SUBSTRING(@phone,@count,1)
+	--if ISNUMERIC(@newValue) = 1   /* this function show us  ., characters are numerics */
+	if @newValue in ('0','1','2','3','4','5','6','7','8','9')
+	begin
+		set @combine = @combine + @newValue
+	end
+	else begin
+		set @combine = @combine + ''
+	end
+
+	set @count = @count + 1
+end 
+print @combine
